@@ -42,9 +42,8 @@ namespace WebApi.Services
             var products=default(List<Product>);
             try
             {
-                products= _context.Products.Find(p => p.Name.Contains(q) || p.Location.Contains(q) || p.EventNo.Contains(q) || 
-                (p.Date.HasValue && p.Date.Value.ToString("dd-MMM-yyyy").Contains(q)) || p.Amountlost.ToString().Contains(q) || p.Detail.Contains(q)
-                || p.Time.Contains(q) )?.ToList();
+                products= _context.Products.Find(p => p.Name.Contains(q) || p.Location.Contains(q) || p.EventNo.Contains(q) 
+                || p.Detail.Contains(q) || p.Time.Contains(q) )?.ToList();
             }
             catch (AppException)
             {
