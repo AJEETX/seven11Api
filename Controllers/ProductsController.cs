@@ -26,7 +26,7 @@ namespace WebApi.Controllers
         [HttpGet("{q?}")]
         public IActionResult GetProducts(string q = "")
         {
-            if (q == "undefined")  q = "";
+            if (q == null ||q == "undefined")  q = "";
             List<Product> products=default(List<Product>) ;
             try{
                 var claims = User.Claims.Select(x => new {Type = x.Type, Value = x.Value});
