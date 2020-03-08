@@ -79,14 +79,14 @@ namespace backend
                 .AllowCredentials();
             });
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseHsts();
-            }
+            // if (env.IsDevelopment())
+            // {
+            //     app.UseDeveloperExceptionPage();
+            // }
+            // else
+            // {
+            //     app.UseHsts();
+            // }
             app.UseStaticFiles();
             app.UseSwaggerUi(typeof(Startup).GetTypeInfo().Assembly,settings =>
                 {
