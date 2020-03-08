@@ -4,7 +4,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace WebApi.Model
 {
-    public class Product
+    public class Vehicle
     {
         [BsonId]
         public ObjectId ID { get; set; }
@@ -19,7 +19,7 @@ namespace WebApi.Model
         public string EventNo { get; set; }
         public DateTime? Date { get; set; }
     }
-    public class ProductDto
+    public class VehicleDto
     {
         public long PId { get; set; }
         public string Name { get; set; }

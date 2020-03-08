@@ -22,11 +22,11 @@ namespace WebApi.Helpers
                 return _database.GetCollection<User>("User");
             }
         }
-        public IMongoCollection<Product> Products
+        public IMongoCollection<Vehicle> Vehicles
         {
             get
             {
-                return _database.GetCollection<Product>("Product");
+                return _database.GetCollection<Vehicle>("Vehicle");
             }
         }
     }
