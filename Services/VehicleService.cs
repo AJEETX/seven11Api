@@ -36,7 +36,6 @@ namespace WebApi.Services
                 return null;
             }
         }
-
         public List<Vehicle> Get(string q = "")
         {
             var vehicles=default(List<Vehicle>);
@@ -51,7 +50,6 @@ namespace WebApi.Services
             }
             return vehicles;
         }
-
         public Vehicle GetById(long id)
         {
             var vehicle=default(Vehicle);
