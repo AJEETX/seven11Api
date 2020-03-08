@@ -1,10 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace WebApi.Helpers
 {
-internal static class PasswordHasher
+    internal static class PasswordHasher
 {
         public static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {

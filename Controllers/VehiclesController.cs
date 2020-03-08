@@ -21,7 +21,7 @@ namespace WebApi.Controllers
             _vehicleService = productService;
             _mapper = mapper;
         }
-        [Authorize(Roles = "Admin,User")]
+        // [Authorize(Roles = "Admin,User")]
 
         [HttpGet("{q?}")]
         public IActionResult GetVehicles(string q = "")
@@ -38,7 +38,7 @@ namespace WebApi.Controllers
             return Ok(vehicles);
         }
 
-        [Authorize(Roles = "Admin,User")]
+        // [Authorize(Roles = "Admin,User")]
         [HttpGet("{id}")]
         [ProducesResponseType(200, Type = typeof(Vehicle))]
         [ProducesResponseType(404)]

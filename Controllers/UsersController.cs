@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Services;
-using Microsoft.AspNetCore.Authorization;
 using AutoMapper;
 using WebApi.Helpers;
 using WebApi.Model;
 using WebApi.Identity;
-using System.ComponentModel.DataAnnotations;
 
 namespace WebApi.Controllers
 {
