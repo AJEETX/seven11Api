@@ -41,8 +41,14 @@ namespace WebApi.Services
             var vehicles=default(List<Vehicle>);
             try
             {
-                vehicles= _context.Vehicles.Find(p => p.Name.Contains(q) || p.Location.Contains(q) || p.EventNo.Contains(q) 
-                || p.Detail.Contains(q) || p.Time.Contains(q) )?.ToList();
+                if(!string.IsNullOrWhiteSpace(q)){
+                    q=q.ToLowerInvariant();
+                    vehicles= _context.Vehicles.Find(p => p.Name.ToLowerInvariant().Contains(q) || 
+                    p.Location.ToLowerInvariant().Contains(q) || 
+                    p.EventNo.ToLowerInvariant().Contains(q)  || 
+                    p.Detail.ToLowerInvariant().Contains(q) || p.Time.Contains(q) )?.ToList();
+                }
+
             }
             catch (AppException)
             {

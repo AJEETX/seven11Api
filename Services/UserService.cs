@@ -30,7 +30,7 @@ namespace WebApi.Services
             if (string.IsNullOrWhiteSpace(password))
                 throw new AppException("Password is required");
 
-            if (_context.Users.Find(u => u.Username == user.Username).FirstOrDefault()!=null)
+            if (_context.Users.Find(u => u.Username == user.Username.Trim()).FirstOrDefault()!=null)
                 throw new AppException("Username '" + user.Username + "' is already taken");
             try
             {    
@@ -40,7 +40,7 @@ namespace WebApi.Services
                 user.Roles=new List<Role>{new Role{Name= "Admin" }};
                 user.PasswordHash = passwordHash;
                 user.PasswordSalt = passwordSalt;
-
+                user.Username=user.Username.Trim();
                 _context.Users.InsertOne(user);
             }
             catch (AppException)
