@@ -48,6 +48,9 @@ namespace WebApi.Services
                     p.EventNo.ToLowerInvariant().Contains(q)  || 
                     p.Detail.ToLowerInvariant().Contains(q) || p.Time.Contains(q) )?.ToList();
                 }
+                else{
+                    vehicles=_context.Vehicles.Find(_context=>true).ToList();
+                }
 
             }
             catch (AppException)
