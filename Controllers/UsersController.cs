@@ -39,8 +39,11 @@ namespace WebApi.Controllers
         {
             var userData=_userService.GetUserById(id);
             if(userData==null) return NotFound();
-            return Ok(new {Id=userData.ID,Username=userData.Username ,
-            Firstname=userData.FirstName,Lastname=userData.LastName});
+            return Ok(new {Id=userData.ID,
+            Username=userData.Username,
+            Firstname=userData.FirstName,
+            Lastname=userData.LastName,
+            Location=userData.Location});
         }        
         [HttpPost("authenticate")]
         [ProducesResponseType(200)]

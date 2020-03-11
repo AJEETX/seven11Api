@@ -100,7 +100,9 @@ namespace WebApi.Services
         {
             try{
                 var filter = Builders<User>.Filter.Eq(s => s.ID, user.ID);
-                var update = Builders<User>.Update.Set(s => s.FirstName, user.FirstName).Set(s => s.LastName, user.LastName);            
+                var update = Builders<User>.Update.Set(s => s.FirstName, user.FirstName)
+                .Set(s => s.LastName, user.LastName)
+                .Set(s => s.Location, user.Location);            
                 var updateResult = _context.Users.UpdateOne(filter,update);
                 return updateResult.IsAcknowledged && updateResult.MatchedCount>0;                
             }
