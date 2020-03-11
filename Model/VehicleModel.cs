@@ -18,6 +18,7 @@ namespace WebApi.Model
         public decimal Amountlost { get; set; }
         public string EventNo { get; set; }
         public DateTime? Date { get; set; }
+        public string UserId { get; set; }
     }
     public class VehicleDto
     {
@@ -30,5 +31,6 @@ namespace WebApi.Model
         public decimal Amountlost { get; set; }
         public string EventNo { get; set; }
         public DateTime? Date { get; set; }
+        public string UserId { get; set; }
     }    
 }
