@@ -89,7 +89,7 @@ namespace WebApi.Controllers
         [HttpPut("{id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public IActionResult PutUser([FromBody] UserInfo userInfo)
+        public IActionResult PutUser(string id,[FromBody] UserInfo userInfo)
         {
             var user = _mapper.Map<User>(userInfo);
             if (!ModelState.IsValid) return BadRequest(ModelState);

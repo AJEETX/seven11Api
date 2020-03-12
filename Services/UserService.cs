@@ -99,7 +99,7 @@ namespace WebApi.Services
         public bool UpdateUser(User user)
         {
             try{
-                var filter = Builders<User>.Filter.Eq(s => s.ID, user.ID);
+                var filter = Builders<User>.Filter.Eq(s => s.Username, user.Username);
                 var update = Builders<User>.Update.Set(s => s.FirstName, user.FirstName)
                 .Set(s => s.LastName, user.LastName)
                 .Set(s => s.Location, user.Location);            
