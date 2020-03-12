@@ -59,9 +59,9 @@ namespace WebApi.Controllers
                 var u=userDto.Username;
                 var Token = _tokeniser.CreateToken(user.ID.ToString(),u);
 
-                return Ok(new { user.ID, user.Username
+                return Ok(new { user.UserId, user.Username
                 ,user.Roles
-                , user.FirstName, user.LastName, Token });
+                , user.FirstName, user.LastName, Token ,user.Location});
             }
             catch (AppException ex)
             {

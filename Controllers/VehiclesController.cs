@@ -21,16 +21,16 @@ namespace WebApi.Controllers
             _vehicleService = productService;
             _mapper = mapper;
         }
-        // [Authorize(Roles = "Admin,User")]
+        [Authorize(Roles = "Admin,User")]
 
-        [HttpGet("{q?}")]
-        public IActionResult GetVehicles(string q = "")
+        [HttpGet("{userid}/{q?}")]
+        public IActionResult GetVehicles(string userid, string q = "")
         {
             if (q == null ||q == "undefined")  q = "";
             List<Vehicle> vehicles=default(List<Vehicle>) ;
             try{
                 var claims = User.Claims.Select(x => new {Type = x.Type, Value = x.Value});
-                vehicles = _vehicleService.Get(q);
+                vehicles = _vehicleService.Get(userid,q);
             }
             catch(AppException){
                 

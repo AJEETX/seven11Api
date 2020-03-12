@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using WebApi.Helpers;
+using WebApi.Identity;
 using WebApi.Model;
 
 namespace WebApi.Services
@@ -20,10 +22,12 @@ namespace WebApi.Services
     public class UserService : IUserService
     {
         private DataContext _context;
+        private ITokeniser _tokeniser;
 
-        public UserService(IOptions<Settings> settings)
+        public UserService(IOptions<Settings> settings, ITokeniser tokeniser)
         {
             _context = new DataContext(settings);
+            _tokeniser = tokeniser;
         }
         public User Create(User user, string password)
         {
@@ -41,6 +45,7 @@ namespace WebApi.Services
                 user.PasswordHash = passwordHash;
                 user.PasswordSalt = passwordSalt;
                 user.Username=user.Username.Trim();
+                user.UserId=_tokeniser.CreateToken(user.FirstName,user.LastName);
                 _context.Users.InsertOne(user);
             }
             catch (AppException)
@@ -66,17 +71,18 @@ namespace WebApi.Services
         public User Authenticate(string username, string password)
         {
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-                return null;
+                throw new AppException("No username/password");
             try
             {    
             
                 var user = _context.Users.Find(x => x.Username == username).FirstOrDefault();
 
                 if (user == null)
-                    return null;
+                    throw new AppException("No user found");
+
 
                 if (!PasswordHasher.VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
-                    return null;
+                    throw new AppException("Password incorrect");
                 return user;
             }
             catch (AppException)
